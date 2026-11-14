@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: talaba-ai-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: BOT_TOKEN
+        sync: false
+      - key: XAI_API_KEY
+        sync: false
+      - key: XAI_MODEL
+        value: grok-4.3
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: CARD_INFO
+        sync: false
+      - key: REQUIRED_CHANNEL
+        sync: false
+      - key: WEBHOOK_SECRET
+        generateValue: true
